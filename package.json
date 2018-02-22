@@ -21,6 +21,8 @@
   "homepage": "https://github.com/MMHK/html2pdf-template#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-fontmin": "^0.7.4"
+    "gulp-fontmin": "^0.7.4",
+    "gulp-open": "^3.0.0",
+    "gulp-ssh": "^0.7.0"
   }
 }
