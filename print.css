@@ -1,0 +1,18 @@
+@media print {
+    * {
+        color: #000;
+        text-shadow: none;
+        background: transparent;
+        box-shadow: none;
+    }
+    body {
+        font-size: 12pt;
+    }
+}
+/**
+ * 打印页面尺寸
+ */
+@page {
+    margin: 1cm;
+    size: A4 landscape;
+}

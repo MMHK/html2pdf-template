@@ -1,0 +1,26 @@
+{
+  "name": "html2pdf-template",
+  "version": "1.0.0",
+  "description": "The template for html2pdf project",
+  "main": "gulpfile.js",
+  "scripts": {
+    "dist": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MMHK/html2pdf-template.git"
+  },
+  "keywords": [
+    "html2pdf"
+  ],
+  "author": "Sam <sam@mixmeida.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/MMHK/html2pdf-template/issues"
+  },
+  "homepage": "https://github.com/MMHK/html2pdf-template#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-fontmin": "^0.7.4"
+  }
+}
