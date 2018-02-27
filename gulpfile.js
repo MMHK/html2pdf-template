@@ -37,6 +37,11 @@ gulp.task('public:css', function () {
         .pipe(gulpSSH.dest(config.prefix))
 });
 
+gulp.task('public:asset', function () {
+    return gulp.src('./asset/**/*')
+        .pipe(gulpSSH.dest(config.prefix + "asset/"))
+});
+
 function minifyFont(text, cb) {
     gulp
         .src('src/fonts/*.ttf')
@@ -62,7 +67,7 @@ gulp.task('font', function(cb) {
         });
  
 });
-gulp.task("public", ["public:html", "public:fonts", "public:css"], function () {
+gulp.task("public", ["public:html", "public:fonts", "public:asset" ,"public:css"], function () {
     gulp.src(__filename)
         .pipe(open({uri: remote}));
 });
