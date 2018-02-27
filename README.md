@@ -9,6 +9,8 @@ The template for html2pdf project
 
 - 请将 `ttf` 字体文件放到 `src/fonts/` 目录下，然后执行 `gulp` 进行字体的裁剪/嵌入。
 
+> 注意：英文font embed 有点问题，请使用[第三方工具](https://everythingfonts.com/font-face)，将英文字体 转换成webfont。
+
 ## 新建PDF模板项目
 
 - 安装 `create-project`， `npm install -g create-project`
