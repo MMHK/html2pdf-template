@@ -7,9 +7,8 @@ The template for html2pdf project
 
 ## 嵌入字体
 
-- 请将 `ttf` 字体文件放到 `src/fonts/` 目录下，然后执行 `gulp` 进行字体的裁剪/嵌入。
-
-> 注意：英文font embed 有点问题，请使用[第三方工具](https://everythingfonts.com/font-face)，将英文字体 转换成webfont。
+- 请将**中文** `ttf` 字体文件放到 `src/fonts/chi` 目录下，然后执行 `gulp font` 进行字体的裁剪/嵌入。
+- 请将**英文** `ttf` 字体文件放到 `src/fonts/eng` 目录下，然后执行 `gulp font:eng` 生成对应的webfont集合。
 
 ## 新建PDF模板项目
 
