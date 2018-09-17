@@ -3,6 +3,7 @@ var fontmin = require("gulp-fontmin");
 var GulpSSH = require('gulp-ssh');
 var open = require('gulp-open');
 var fonteditor = require("./src/fonteditor");
+var webserver = require('gulp-webserver');
 
 
 var dir = {
@@ -88,6 +89,18 @@ gulp.task("font:eng", function () {
     gulp.src(["./src/fonts/eng/*.ttf"])
         .pipe(fonteditor())
         .pipe(gulp.dest("./fonts/"))
+});
+
+/**
+ * 开发服务器
+ */
+gulp.task("dev", function () {
+    gulp.src('./')
+        .pipe(webserver({
+            livereload: true,
+            directoryListing: true,
+            open: true
+        }));
 });
 
 gulp.task("default", ["font"]);

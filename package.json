@@ -4,7 +4,8 @@
   "description": "The template for html2pdf project",
   "main": "gulpfile.js",
   "scripts": {
-    "dist": "gulp"
+    "dist": "gulp",
+    "dev" : "gulp dev"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "gulp-open": "^3.0.0",
     "gulp-ssh": "^0.7.0",
     "gulp-util": "^3.0.8",
+    "gulp-webserver": "^0.9.1",
     "through2": "^2.0.3"
   }
 }

@@ -2,50 +2,11 @@
 
 @font-face {
     font-family: "Arial";
-    src: url("fonts/Arial.eot");
-    src: url("fonts/Arial.eot?#iefix") format("embedded-opentype"), url("fonts/Arial.woff") format("woff"), url("fonts/Arial.ttf") format("truetype"), url("fonts/Arial.svg#uxfonteditor") format("svg");
-}
-
-/* Arial-bd */
-
-@font-face {
-    font-family: "Arial-bd";
-    src: url("fonts/Arial-bd.eot");
-    src: url("fonts/Arial-bd.eot?#iefix") format("embedded-opentype"), url("fonts/Arial-bd.woff") format("woff"), url("fonts/Arial-bd.ttf") format("truetype"), url("fonts/Arial-bd.svg#uxfonteditor") format("svg");
-}
-
-/*微軟正黑體-regular*/
-@font-face {
-    font-family: "msjh-regular";
-    src: url("fonts/msjh-regular.eot"); /* IE9 */
-    src: url("fonts/msjh-regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-
-    url("fonts/msjh-regular.woff") format("woff"), /* chrome、firefox */
-    url("fonts/msjh-regular.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
-
-    url("fonts/msjh-regular.svg#Microsoft JhengHei") format("svg"); /* iOS 4.1- */
-    font-style: normal;
-    font-weight: normal;
-}
-
-/* Helvetica-bold */
-@font-face {
-    font-family: "Helvetica-bold";
-    src: url("fonts/Helvetica-bold.eot"); /* IE9 */
-    src: url("fonts/Helvetica-bold.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("fonts/Helvetica-bold.woff") format("woff"), /* chrome、firefox */
-    url("fonts/Helvetica-bold.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
-    url("fonts/Helvetica-bold.svg#uxfonteditor") format("svg"); /* iOS 4.1- */
-}
-
-/* Helvetica-regular */
-@font-face {
-    font-family: "Helvetica-regular";
-    src: url("fonts/Helvetica-regular.eot"); /* IE9 */
-    src: url("fonts/Helvetica-regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("fonts/Helvetica-regular.woff") format("woff"), /* chrome、firefox */
-    url("fonts/Helvetica-regular.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
-    url("fonts/Helvetica-regular.svg#uxfonteditor") format("svg"); /* iOS 4.1- */
+    src: url("fonts/ArialMT.eot");
+    src: url("fonts/ArialMT.eot?#iefix") format("embedded-opentype"), 
+         url("fonts/ArialMT.woff") format("woff"),
+         url("fonts/ArialMT.ttf") format("truetype"),
+         url("fonts/ArialMT.svg#uxfonteditor") format("svg");
 }
 
 /*  Font */
@@ -57,7 +18,7 @@
 
 body {
     padding: 0;
-    margin: 1em;
+    margin: 0;
     font-family: "Arial", sans-serif;
     line-height: 1.5;
     font-size: 14px;
@@ -98,4 +59,41 @@ li {
     width: 1240px;
     background-size: 100% auto;
     height: 1754px;
+    position:relative;
+    background:url("asset/page_bg.png") no-repeat;
+}
+.SAMPLE {
+    position: absolute;
+}
+.SAMPLE:after {
+    content: "sample";
+    opacity: 0.5;
+    position: absolute;
+    font-size: 10em;
+    left: 50%;
+    top: 50%;
+    margin-left: -25%;
+    margin-top: -25%;
+    text-transform: uppercase;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+/* 
+ * 默认模本变量容器 
+ */
+.page > .label {
+    position: absolute;
+    display:inline-block;
+    width: 200px;
+    line-height: 1;
+    min-height: 1em;
+    font-size: 22px;
+    /* border: 1px solid #ff0000; */
+}
+
+.page > .policy-number {
+    top: 283px;
+    left: 199px;
+    width: 727px;
 }
