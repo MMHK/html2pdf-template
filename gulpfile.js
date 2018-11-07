@@ -62,6 +62,23 @@ function minifyFont(text, cb) {
         .pipe(gulp.dest('./fonts/'))
         .on('end', cb);
 }
+
+gulp.task("build", function(){
+    gulp.src([
+        "./*.html",
+        "./*.css"
+        ])
+        .pipe(gulp.dest("./dist/"))
+        .on("end", function(){
+            gulp.src("./asset/**/*")
+                .pipe(gulp.dest("./dist/asset/"))
+                .on("end", function(){
+                    gulp.src("./fonts/*")
+                        .pipe(gulp.dest("./dist/fonts/"));
+                });
+        });
+});
+
 /**
  * 压缩中文字体
  */
