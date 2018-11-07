@@ -24,6 +24,10 @@ The template for html2pdf project
 - 打开 [PDF生成内网版](http://192.168.33.126:4444/sample/)
 - 找到 `Covert Link to PDF` ， 将上一步生成的URL copy到输入框，生成pdf。
 
+## 打包模版
+
+`gulp build`, 执行后会将模版资源打包到 `dist`目录下。
+
 ## PDF A4尺寸说明
 
 - 现在的PDF生成器，是按照150PDI的分辨率生成PDF，所以单页的尺寸是 1240px x 1754px

@@ -63,6 +63,7 @@ function minifyFont(text, cb) {
         .on('end', cb);
 }
 
+//打包模版
 gulp.task("build", function(){
     gulp.src([
         "./*.html",

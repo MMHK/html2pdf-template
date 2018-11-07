@@ -2,3 +2,4 @@
 /node_modules
 /fonts/*.css
 /src/fonts/*.ttf
+/dist

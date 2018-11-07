@@ -60,6 +60,7 @@ li {
     background-size: 100% auto;
     height: 1754px;
     position:relative;
+    overflow:hidden;
     background:url("asset/page_bg.png") no-repeat;
 }
 .SAMPLE {
@@ -88,12 +89,33 @@ li {
     width: 200px;
     line-height: 1;
     min-height: 1em;
-    font-size: 22px;
+    font-size: 26px;
     /* border: 1px solid #ff0000; */
 }
 
 .page > .policy-number {
-    top: 283px;
-    left: 199px;
-    width: 727px;
+    top: 511px;
+    left: 520px;
+    width: 707px;
+}
+.page > .full-name {
+    top: 337px;
+    left: 520px;
+    width: 707px;
+}
+.page > .issue-date {
+    top: 599px;
+    left: 520px;
+    width: 707px;
+}
+.page > .cmnt-date {
+    top: 686px;
+    left: 582px;
+    width: 188px;
+    text-align: center;
+}
+.page > .expiry-date {
+    top: 686px;
+    left: 812px;
+    width: 426px;
 }
