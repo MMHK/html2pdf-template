@@ -21,7 +21,7 @@ The template for html2pdf project
 
 ## 生成PDF
 
-- 打开 [PDF生成内网版](http://192.168.33.126:4444/sample/)
+- 打开 [PDF生成内网版](http://192.168.33.6:4444/sample/)
 - 找到 `Covert Link to PDF` ， 将上一步生成的URL copy到输入框，生成pdf。
 
 ## 打包模版
