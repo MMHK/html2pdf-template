@@ -3,12 +3,13 @@ The template for html2pdf project
 
 ## 初始化
 
-`npm install`
+`npm install` 或 `yarn install`
 
 ## 嵌入字体
 
-- 请将**中文** `ttf` 字体文件放到 `src/fonts/chi` 目录下，然后执行 `gulp font` 进行字体的裁剪/嵌入。
-- 请将**英文** `ttf` 字体文件放到 `src/fonts/eng` 目录下，然后执行 `gulp font:eng` 生成对应的webfont集合。
+- 请将**中文** `ttf` 字体文件放到 `src/fonts/chi` 目录下。
+- 请将**英文** `ttf` 字体文件放到 `src/fonts/eng` 目录下。
+- 然后执行 `npm run font` 或 `yarn font`
 
 ## 新建PDF模板项目
 
@@ -17,7 +18,7 @@ The template for html2pdf project
 
 ## 发布外网访问url
 
-- `gulp public`, 执行后会自动打开浏览器访问地址。
+- `npm run public`, 执行后会自动打开浏览器访问地址。
 
 ## 生成PDF
 
@@ -26,7 +27,13 @@ The template for html2pdf project
 
 ## 打包模版
 
-`gulp build`, 执行后会将模版资源打包到 `dist`目录下。
+`npm run build`, 执行后会将模版资源打包到 `dist`目录下。
+
+## 开发服务器
+
+```bash
+npm run dev
+```
 
 ## PDF A4尺寸说明
 

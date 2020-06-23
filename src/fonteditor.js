@@ -1,16 +1,16 @@
-var through = require('through2');
-var gutil = require('gulp-util');
-var File = gutil.File;
-var sources = []; // store the source file paths
-var Font = require('fonteditor-core').Font;
-var path = require("path");
-var fs = require('fs');
+const through = require('through2');
+const gutil = require('gulp-util');
+const File = gutil.File;
+const sources = []; // store the source file paths
+const Font = require('fonteditor-core').Font;
+const path = require("path");
+const fs = require('fs');
 
 // Consts
 const PLUGIN_NAME = 'gulp-mm-webfont';
 const WEB_FONT_TYPE = ["eot", "woff", "svg", "ttf"];
 
-var bufferContents = function(file, enc, cb) {
+const bufferContents = function(file, enc, cb) {
     if (file.isNull()) {
         return cb();
     }
@@ -20,8 +20,8 @@ var bufferContents = function(file, enc, cb) {
         return;
     }
     else if (file.isBuffer()) {
-        var ext = path.extname(file.path).toLowerCase().replace(".", "");
-        var font = Font.create(file.contents, {
+        const ext = path.extname(file.path).toLowerCase().replace(".", "");
+        const font = Font.create(file.contents, {
             type: ext, // support ttf,woff,eot,otf,svg
             hinting: true, // save font hinting
             compound2simple: true, // transform ttf compound glyf to simple
@@ -29,10 +29,10 @@ var bufferContents = function(file, enc, cb) {
             combinePath: false // for svg path
         });
 
-        var fontName = font.get().name.postScriptName;
+        const fontName = font.get().name.postScriptName;
 
         WEB_FONT_TYPE.forEach(function (type) {
-            var buf = font.write({
+            let buf = font.write({
                 type: type,
                 toBuffer: true,
                 hinting: true,
@@ -41,7 +41,7 @@ var bufferContents = function(file, enc, cb) {
             if (!Buffer.isBuffer(buf)) {
                 buf = Buffer.from(buf);
             }
-            var _file = new File({
+            const _file = new File({
                 cwd: file.cwd,
                 base: file.base,
                 path: path.join(file.base, fontName + "." + type),
@@ -54,9 +54,9 @@ var bufferContents = function(file, enc, cb) {
 };
 
 
-var endStream = function (cb) {
+const endStream = function (cb) {
     // all the input files are in, now convert them
-    var self = this;
+    const self = this;
     if (sources.length <= 0) {
         cb();
         return;

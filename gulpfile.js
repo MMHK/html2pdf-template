@@ -1,17 +1,17 @@
-var gulp = require("gulp");
-var fontmin = require("gulp-fontmin");
-var GulpSSH = require('gulp-ssh');
-var open = require('gulp-open');
-var fonteditor = require("./src/fonteditor");
-var webserver = require('gulp-webserver');
+const gulp = require("gulp");
+const fontmin = require("gulp-fontmin");
+const GulpSSH = require('gulp-ssh');
+const open = require('gulp-open');
+const fonteditor = require("./src/fonteditor");
+const webserver = require('gulp-webserver');
 
 
-var dir = {
+const dir = {
     path: Date.now()
 };
-var remote = "http://pdf.demo2.mixmedia.com/" + dir.path;
+const remote = "http://pdf.demo2.mixmedia.com/" + dir.path;
 
-var config = {
+const config = {
     host: '192.168.33.6',
     port: 222,
     username: 'temp',
@@ -19,95 +19,89 @@ var config = {
     prefix: "/webroot/" + dir.path + "/"
 };
 
-var gulpSSH = new GulpSSH({
+const gulpSSH = new GulpSSH({
     ignoreErrors: false,
     sshConfig: config
 });
 
 /**
- * 发布子任务，发布html文件
- */
-gulp.task('public:html', function () {
-    return gulp.src('./*.html')
-        .pipe(gulpSSH.dest(config.prefix))
-});
-/**
- * 发布子任务，发布字体文件
- */
-gulp.task('public:fonts', function () {
-    return gulp.src('./fonts/*.*')
-        .pipe(gulpSSH.dest(config.prefix + "fonts/"))
-});
-/**
- * 发布子任务，发布css文件
- */
-gulp.task('public:css', function () {
-    return gulp.src('./*.css')
-        .pipe(gulpSSH.dest(config.prefix))
-});
-/**
- * 发布子任务，发布静态资源文件
+ * 发布子任务，发布文件
  */
 gulp.task('public:asset', function () {
-    return gulp.src('./asset/**/*')
-        .pipe(gulpSSH.dest(config.prefix + "asset/"))
+    return gulp.src('./dist/**/*')
+        .pipe(gulpSSH.dest(config.prefix))
 });
 
-function minifyFont(text, cb) {
-    gulp
+function minifyFont(text) {
+    return gulp
         .src('src/fonts/chi/*.ttf')
         .pipe(fontmin({
             text: text
         }))
         .pipe(gulp.dest('./fonts/'))
-        .on('end', cb);
 }
 
-//打包模版
-gulp.task("build", function(){
-    gulp.src([
-        "./*.html",
-        "./*.css"
-        ])
-        .pipe(gulp.dest("./dist/"))
-        .on("end", function(){
-            gulp.src("./asset/**/*")
-                .pipe(gulp.dest("./dist/asset/"))
-                .on("end", function(){
-                    gulp.src("./fonts/*")
-                        .pipe(gulp.dest("./dist/fonts/"));
-                });
+/**
+ * 将英文字体转换成webfont
+ */
+gulp.task("font:eng", function () {
+    return gulp.src(["./src/fonts/eng/*.ttf"])
+        .pipe(fonteditor())
+        .pipe(gulp.dest("./fonts/"))
+});
+/**
+ * 将中文字体裁剪转换成webfont
+ */
+gulp.task("font:chi", function () {
+    const buffers = [];
+    return gulp
+        .src('./*.html')
+        .on('data', function(file) {
+            buffers.push(file.contents);
+        })
+        .on('end', function() {
+            const text = Buffer.concat(buffers).toString('utf-8');
+            return minifyFont(text);
         });
 });
 
 /**
  * 压缩中文字体
  */
-gulp.task('font', ["font:eng"],function(cb) {
-    var buffers = [];
-    gulp
-        .src('./*.html')
-        .on('data', function(file) {
-            buffers.push(file.contents);
-        })
-        .on('end', function() {
-            var text = Buffer.concat(buffers).toString('utf-8');
-            minifyFont(text, cb);
+gulp.task('font', gulp.parallel("font:eng", "font:chi"));
 
+//打包模版
+gulp.task("build", gulp.series("font", gulp.parallel((callback) => {
+    gulp.src([
+        "./*.html",
+        "./*.css"
+    ])
+        .pipe(gulp.dest("./dist/"))
+        .on("end", function(){
+            callback();
+        })
+}, (callback) => {
+    gulp.src("./asset/**/*")
+        .pipe(gulp.dest("./dist/asset/"))
+        .on("end", function(){
+            callback();
         });
-});
-gulp.task("public", ["public:html", "public:fonts", "public:asset" ,"public:css"], function () {
+}, (callback) => {
+    gulp.src("./fonts/*")
+        .pipe(gulp.dest("./dist/fonts/"))
+        .on("end", () => {
+            callback();
+        });
+})));
+
+
+gulp.task("public", gulp.series("build", "public:asset", (callback) => {
     gulp.src(__filename)
-        .pipe(open({uri: remote}));
-});
-/**
- * 将英文字体转换成webfont
- */
-gulp.task("font:eng", function () {
-    gulp.src(["./src/fonts/eng/*.ttf"])
-        .pipe(fonteditor())
-        .pipe(gulp.dest("./fonts/"))
-});
+        .pipe(open({uri: remote}))
+        .on("end", () => {
+            callback()
+        });
+}));
 
 /**
  * 开发服务器
@@ -121,4 +115,4 @@ gulp.task("dev", function () {
         }));
 });
 
-gulp.task("default", ["font"]);
+gulp.task("default", gulp.series("font"));
