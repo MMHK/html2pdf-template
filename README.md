@@ -7,10 +7,20 @@ The template for html2pdf project
 
 ## 嵌入字体
 
-- 请将**中文** `ttf` 字体文件放到 `src/fonts/chi` 目录下。
-- 请将**英文** `ttf` 字体文件放到 `src/fonts/eng` 目录下。
-- 然后执行 `npm run font` 或 `yarn font`
-
+- 先准备好 `@font-face` block。
+```
+@font-face {
+font-family: "[FontName]";
+font-path: "../fonts/[FontName].ttf";
+src: url("../fonts/[FontName].ttf") format("truetype");
+font-style: normal;
+font-weight: 400;
+}
+```
+- 按 `webfont` 规矩，请将 `ttf` 字体文件放到 `src` 目录下。
+- 然后补完 `woff` `woff2` `svg` `eot` 文件，只需要 ttf 文件需要有内容，其他文件新建空白文件即可。
+  `PostCSS` 的 `fontpath` plugin 会自动根据 `font-path`，补完其他 webfont 字型的定义。
+  
 ## 新建PDF模板项目
 
 - 安装 `create-project`， `npm install -g create-project`
@@ -18,7 +28,7 @@ The template for html2pdf project
 
 ## 发布外网访问url
 
-- `npm run public`, 执行后会自动打开浏览器访问地址。
+- `yarn serve`, 选择 `允许外网访问` 。
 
 ## 生成PDF
 
@@ -27,12 +37,12 @@ The template for html2pdf project
 
 ## 打包模版
 
-`npm run build`, 执行后会将模版资源打包到 `dist`目录下。
+`yarn build`, 执行后会将模版资源打包到 `dist`目录下。
 
 ## 开发服务器
 
 ```bash
-npm run dev
+yanr 
 ```
 
 ## PDF A4尺寸说明
