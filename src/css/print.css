@@ -85,6 +85,26 @@ li {
     background-size: 100% auto;
     height: 1754px;
 }
+/**
+ * SAMPLE 水印
+ */
+.SAMPLE {
+    position: absolute;
+}
+.SAMPLE:after {
+    content: "sample";
+    opacity: 0.5;
+    position: absolute;
+    font-size: 10em;
+    left: 50%;
+    top: 50%;
+    margin-left: -25%;
+    margin-top: -25%;
+    text-transform: uppercase;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
 
 .index-pic {
     background: url("../asset/bg_pc.png") no-repeat;
