@@ -8,7 +8,7 @@ The template for html2pdf project
 ## 嵌入字体
 
 - 先准备好 `@font-face` block。
-```
+```css
 @font-face {
   font-family: "[FontName]";
   font-path: "../fonts/[FontName].ttf";
@@ -42,7 +42,7 @@ The template for html2pdf project
 ## 开发服务器
 
 ```bash
-yanr 
+yarn serve
 ```
 
 ## PDF A4尺寸说明
