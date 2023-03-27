@@ -1,0 +1,506 @@
+@media print {
+    * {
+        color: #000;
+        text-shadow: none;
+        background: transparent;
+        box-shadow: none;
+    }
+    body {
+        font-size: 12pt;
+    }
+}
+/**
+ * 打印页面尺寸
+ */
+@page {
+    margin: 1cm;
+    size: A4 landscape;
+}
+
+@font-face {
+    font-family: "Arial";
+    font-path: "../fonts/Arial";
+    src: url("../fonts/Arial.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+}
+
+
+/* Arial-bd */
+
+@font-face {
+    font-family: "Arial";
+    font-path: "../fonts/Arial-bd";
+    src: url("../fonts/Arial-bd.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 600;
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding: 0;
+    font-family: "Arial", sans-serif;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+.clearfix:after {
+    clear: both;
+    display: block;
+    visibility: hidden;
+    height: 0;
+    content: ".";
+}
+
+.fl {
+    float: left;
+}
+
+.rg {
+    float: right;
+}
+
+.rel {
+    position: relative;
+}
+
+.abs {
+    position: absolute;
+}
+/**
+ * 150dpi基准的A4尺寸大小
+ */
+.page {
+    width: 1240px;
+    background-size: 100% auto;
+    height: 1754px;
+}
+
+.index-pic {
+    background: url("../asset/bg_pc.png") no-repeat;
+    background-size: 100% auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.wrappp {
+    width: 1050px;
+    height: 100%;
+    margin: 280px auto 0;
+    font-size: 14px;
+
+}
+
+.box1 {
+    width: 100%;
+    height: 190px;
+}
+
+.box1 .num {
+    top: 25px;
+    left: 200px;
+    width: 450px;
+}
+
+.box1 .date {
+    top: 25px;
+    right: 15px;
+    width: 205px;
+}
+
+.box1 .insurer {
+    bottom: 62px;
+    left: 150px;
+    width: 880px;
+}
+
+.box1 .proposer {
+    bottom: 33px;
+    left: 140px;
+    width: 890px;
+}
+
+.box1 .business {
+    bottom: 5px;
+    left: 265px;
+    width: 765px;
+}
+
+.box2 {
+    width: 100%;
+    height: 220px;
+}
+
+.box2 .left-terms {
+    top: 14px;
+    left: 200px;
+    width: 310px;
+}
+
+.box2 .left-period {
+    top: 42px;
+    left: 200px;
+    width: 310px;
+}
+.box2 .left-type {
+    top: 71px;
+    left: 200px;
+    width: 310px;
+}
+
+.box2 .left-seats {
+    bottom: 99px;
+    left: 200px;
+    width: 310px;
+}
+
+.box2 .left-engine {
+    bottom: 71px;
+    left: 200px;
+    width: 310px;
+}
+
+.box2 .left-chassis {
+    bottom: 42px;
+    left: 200px;
+    width: 310px;
+}
+
+.box2 .left-alarm {
+    bottom: 12px;
+    left: 245px;
+    width: 271px;
+}
+
+.box2 .right-model {
+    top: 14px;
+    right: 15px;
+    width: 280px;
+}
+
+.box2 .right-year {
+    top: 42px;
+    right: 15px;
+    width: 270px;
+}
+.box2 .right-mark {
+    top: 71px;
+    right: 15px;
+    width: 290px;
+}
+
+.box2 .right-tonnage {
+    bottom: 99px;
+    right: 15px;
+    width: 210px;
+}
+
+.box2 .right-value {
+    bottom: 71px;
+    right: 15px;
+    width: 320px;
+}
+
+.box2 .right-claim {
+    bottom: 42px;
+    right: 0px;
+    width: 305px;
+}
+
+.box2 .right-hire {
+    bottom: 12px;
+    right: 15px;
+    width: 307px;
+}
+
+.box3 {
+    width: 100%;
+    height: 210px;
+    /* cv add: margin-top: 3px; */
+}
+
+.box3 p {
+    width: 100%;
+}
+
+.box3 .name-box {
+    width: 320px;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 50px;
+    margin-left: 10px;
+    top: 0;
+    left: 0;
+}
+
+.box3 .list1 {
+    top: 60px;
+    left: 0;
+}
+
+.box3 .list2 {
+    top: 99px;
+    left: 0;
+}
+
+.box3 .list3 {
+    bottom: 48px;
+    left: 0;
+}
+
+.box3 .list4 {
+    bottom: 8px;
+    left: 0;
+}
+
+.box3 .occupa-box {
+    width: 330px;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 50px;
+    margin-left: 10px;
+    top: 0;
+    left: 330px;
+}
+
+.box3 .sex-box {
+    width: 65px;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 50px;
+    top: 0;
+    right: 315px;
+    text-align: center;
+}
+
+.box3 .age-box {
+    width: 55px;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 50px;
+    top: 0;
+    right: 260px;
+    text-align: center;
+}
+
+.box3 .driving-box {
+    width: 245px;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 50px;
+    margin-left: 10px;
+    top: 0;
+    right: 5px;
+}
+
+.box4 {
+    width: 100%;
+    height: 100px;
+}
+
+.box4 .premium {
+    bottom: 6px;
+    left: 15px;
+    width: 230px;
+}
+
+.box4 .levy-mib {
+    bottom: 6px;
+    left: 260px;
+    width: 270px;
+}
+
+.box4 .levy-ia {
+    bottom: 6px;
+    right: 275px;
+    width: 230px;
+}
+
+.box4 .payable {
+    bottom: 6px;
+    right: 20px;
+    width: 240px;
+}
+
+.box5 {
+    width: 100%;
+    height: 175px;
+    text-align: right;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+.box5 .general {
+    width: 810px;
+    right: 15px;
+    top: 8px;
+}
+
+.box5 .theft {
+    width: 760px;
+    right: 15px;
+    top: 36px;
+}
+
+.box5 .left-parking {
+    width: 210px;
+    left: 305px;
+    top: 65px;
+}
+
+.box5 .left-driver {
+    width: 180px;
+    left: 335px;
+    top: 93px;
+}
+
+.box5 .left-tppd {
+    width: 230px;
+    left: 285px;
+    bottom: 30px;
+}
+
+.box5 .left-inexper {
+    left: 425px;
+    bottom: 0;
+    width: 90px;
+}
+
+.box5 .right-young {
+    width: 220px;
+    right: 15px;
+    top: 65px;
+}
+
+.box5 .right-unnamed {
+    width: 190px;
+    right: 15px;
+    top: 93px;
+}
+
+.box5 .right-tppd {
+    width: 130px;
+    right: 15px;
+    bottom: 30px;
+}
+
+.box5 .right-unntppd {
+    right: 15px;
+    bottom: 0;
+    width: 90px;
+}
+
+.box6 {
+    width: 100%;
+    height: 135px;
+    box-sizing: border-box;
+    padding: 30px 0 0 10px;
+    position: relative;
+}
+
+.box6 p {
+    font-size: 14px;
+    width: 98.5%;
+}
+
+.box6 .box6-prompt {
+    width: 100%;
+    color: black;
+    font-size: 14px;
+    position: absolute;
+    left: 10px;
+    bottom: 5px;
+}
+
+.box6 .box6-prompt p {
+    font-size: 12px;
+}
+
+.box7 {
+    width: 100%;
+    height: 171px;
+    margin-top: 110px;
+    font-size: 14px;
+}
+
+.box7 .num-bbox {
+    bottom: 0;
+    right: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.box7 .gbox {
+    left: 13px;
+}
+
+.box7 .gbox1 {
+    top: 15px;
+}
+
+.box7 .gbox2 {
+    top: 47px;
+}
+.box7 .credit-box {
+    width: 187px;
+    top: 9px;
+    right: 317px;
+}
+
+.box7 .eexpiry-box {
+    width: 141px;
+    top: 9px;
+    right: 30px;
+}
+
+.box7 .chequee-box {
+    width: 232px;
+    top: 40px;
+    right: 317px;
+}
+
+.box7 .bankk {
+    width: 137px;
+    top: 40px;
+    right: 30px;
+}
+
+.box7 .signn-box {
+    width: 212px;
+    bottom: 50px;
+    left: 130px;
+}
+
+.box7 .compc-box {
+    width: 406px;
+    bottom: 50px;
+    right: 30px;
+}
+
+.leftbor-boxing {
+    border: 1px solid #a29e9d;
+    position: absolute;
+    left: 95px;
+    top: 78px;
+    padding: 8px;
+    font-size: 16px;
+    height: 96px;
+    width: 365px;
+}
+
+.gicon {
+    width: 14px;
+    height: 14px;
+    background: url(../asset/ping-gou.svg) no-repeat;
+    background-size: cover;
+}
