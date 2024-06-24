@@ -85,6 +85,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const FontminPlugin = require('./src/webpack/fontmin-webpack.js');
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin-webpack5');
+const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
+const HtmlInlineScriptPlugin = require('html-inline-script-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 /*
  * We've enabled HtmlWebpackPlugin for you! This generates a html
@@ -141,7 +144,8 @@ const config = {
 		getFontmin(),
 
 	].concat(HTMlEntryList, [
-		new HtmlWebpackExcludeAssetsPlugin()
+		new HTMLInlineCSSWebpackPlugin(),
+		new HtmlInlineScriptPlugin()
 	]),
 
 	module: {
@@ -172,7 +176,7 @@ const config = {
 				},
 				parser: {
 					dataUrlCondition: {
-						maxSize: 4 * 1024 // 4kb
+						maxSize: 2 * 1024 * 1024 // 2mb
 					}
 				},
 			},
@@ -182,6 +186,11 @@ const config = {
 				generator: {
 					filename: 'assets/img/[hash][ext][query]'
 				},
+				parser: {
+					dataUrlCondition: {
+						maxSize: 2 * 1024 * 1024, // 2mb 以下的文件将被内联
+					},
+				}
 			},
 			{
 				test: /\.css$/,
@@ -267,6 +276,17 @@ const config = {
 							// https://sharp.pixelplumbing.com/api-output#gif
 							gif: {},
 						},
+					},
+				},
+			}),
+			new TerserWebpackPlugin({
+				extractComments: false,
+				terserOptions: {
+					format: {
+						comments: false,
+					},
+					compress: {
+						drop_console: true, // 移除 console.log 语句
 					},
 				},
 			}),

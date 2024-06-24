@@ -3,3 +3,4 @@
 /fonts/*.css
 /src/fonts/*.ttf
 /dist
+/.yarn
