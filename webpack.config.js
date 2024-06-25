@@ -120,7 +120,7 @@ const getFontmin = () => {
 
 const config = {
 	mode: 'development',
-	entry: './src/css/print.css',
+	entry: ['./src/main.js','./src/css/print.css'],
 
 	output: {
 		path: path.resolve(__dirname, 'dist'),
@@ -167,6 +167,39 @@ const config = {
 						}
 					},
 				]
+			},
+			{
+				test: /.(js)$/,
+				include: [
+					path.resolve(__dirname, 'src'),
+				],
+				exclude: /(node_modules|webpack)/,
+				use: [
+					{
+						loader: 'babel-loader',
+						options: {
+							plugins: [
+								[
+									"@babel/plugin-transform-template-literals", {
+									loose: true
+								}],
+								"@babel/plugin-transform-runtime",
+								"@babel/plugin-syntax-dynamic-import"
+							],
+
+							presets: [
+								[
+									'@babel/preset-env',
+									{
+										modules: false,
+										useBuiltIns: "usage",
+										corejs: 3
+									}
+								]
+							]
+						}
+					},
+				],
 			},
 			{
 				test: /\.(eot|svg|ttf|woff|woff2)$/i,
