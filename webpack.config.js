@@ -103,7 +103,7 @@ const HTMlEntryList = globSync("./src/*.html").map((ele) => {
 		filename: path.basename(ele),
 		template: ele,
 		hash: false,
-		excludeAssets: [/\.js/]
+		inject: "body",
 	})
 });
 
@@ -124,7 +124,7 @@ const config = {
 
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		publicPath: "auto",
+		publicPath: '',
 		clean: true,
 	},
 
@@ -143,7 +143,7 @@ const config = {
 
 		getFontmin(),
 
-	].concat(HTMlEntryList, [
+	].concat(HTMlEntryList, isDevServer ? [] : [
 		new HTMLInlineCSSWebpackPlugin(),
 		new HtmlInlineScriptPlugin()
 	]),
@@ -263,7 +263,7 @@ const config = {
 		splitChunks: {
 			cacheGroups: {
 				default:{
-					name: "home",
+					name: "main",
 					chunks: 'all',
 					reuseExistingChunk: true,
 					priority: 10,
