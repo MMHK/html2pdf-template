@@ -124,7 +124,7 @@ const config = {
 
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		publicPath: '',
+		publicPath: 'auto',
 		clean: true,
 	},
 
@@ -243,10 +243,11 @@ const config = {
 									["autoprefixer"],
 									fontpath({
 										formats: [
-											{ type: 'woff2', ext: 'woff2' },
-											{ type: 'embedded-opentype', ext: 'eot' },
-											{ type: 'woff', ext: 'woff' },
-											{ type: 'svg', ext: 'svg'},
+											// { type: 'woff2', ext: 'woff2' },
+											// { type: 'embedded-opentype', ext: 'eot' },
+											// { type: 'woff', ext: 'woff' },
+											// { type: 'svg', ext: 'svg'},
+											{ type: 'truetype', ext: 'ttf'},
 										],
 									}),
 								],
@@ -336,6 +337,9 @@ const config = {
 	devServer: {
 		open: true,
 		compress: true,
+		static: {
+			directory: path.join(__dirname, 'dist'),
+		},
 		allowedHosts: [
 			"localhost",
 			".demo2.mixmedia.com",

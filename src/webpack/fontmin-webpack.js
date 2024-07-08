@@ -120,9 +120,9 @@ class FontminPlugin {
         usedGlyphs = _.isArray(usedGlyphs) ? usedGlyphs : [usedGlyphs]
         let fontmin = new Fontmin().use(Fontmin.glyph({text: usedGlyphs.join(' ')}))
         FONTMIN_EXTENSIONS.forEach(ext => {
-            // if (extensions.includes('.' + ext)) {
+            if (extensions.includes('.' + ext)) {
                 fontmin = fontmin.use(Fontmin[`ttf2${ext}`]())
-            // }
+            }
         });
 
         return fontmin
@@ -201,12 +201,43 @@ class FontminPlugin {
                     // log('after minifyFontGroup', files);
 
                     files.forEach(file => {
+                        // 获取 parser.dataUrlCondition.maxSize 配置
+                        const maxSize = this.getMaxSize(compilation, file.asset) || 8 * 1024; // 默认 8 KB
+                        let {minified, extension} = file;
+                        if (minified.length <= maxSize) {
+                            const base64Content = minified.toString('base64');
+                            minified = `data:font/${extension.replace(".", "")};base64,${base64Content}`;
+
+                            // 修改 CSS 文件中的 URL 引用
+                            Object.entries(compilation.assets).forEach(([assetName, asset]) => {
+                                if (/\.css$/.test(assetName)) {
+                                    // console.log(assetName, file.asset);
+                                    let content = asset.source().toString();
+
+                                    // 替换 CSS 中的 URL 引用
+                                    const regex = new RegExp(`url\\(['"]?([^'"]*)${path.basename(file.asset)}['"]?\\)`, 'g');
+                                    // console.log(content.match(regex));
+                                    content = content.replace(regex, `url('${minified}')`);
+
+                                    // 更新 CSS 文件内容
+                                    compilation.assets[assetName] = new RawSource(content);
+                                    delete compilation.assets[file.asset];
+                                }
+                            })
+                            return;
+                        }
+
                         if (compilation.assets[file.asset]) {
-                            compilation.assets[file.asset].buffer = file.minified;
+                            if (compilation.assets[file.asset].hasOwnProperty('_cachedSource')) {
+                                compilation.assets[file.asset] = new RawSource(minified);
+                            } else {
+                                compilation.assets[file.asset].buffer = minified;
+                            }
                         } else {
-                            compilation.assets[file.asset] = new RawSource(file.minified);
+                            compilation.assets[file.asset] = new RawSource(minified);
                         }
                         // log("minified", compilation.assets[file.asset]);
+                        // console.log("minified", compilation.assets[file.asset]);
                     });
                     return Promise.resolve();
                 })
